@@ -43,6 +43,29 @@ public class MinFromRotatedSortedArray {
 			return binaryMin(A, mid+1, high);
 	}
 	
+	public static int binaryMinLoop(int[] A, int low, int high) {
+		
+		int mid;
+		System.out.println("Called Binary Min Using Loop:::");
+		while(low<=high) {
+			mid =  (low+high)/2;
+			System.out.println("\tMid element: "+ A[mid]);
+			if(low==high)
+				break;
+			else if(low+1 == high) {
+				if(A[low] < A[high])
+					return A[low];
+				else
+					return A[high];
+			}
+			if(A[mid]<A[high])
+				high = mid;
+			else
+				low = mid+1;
+		}
+		return A[low];
+	}
+	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
@@ -50,6 +73,7 @@ public class MinFromRotatedSortedArray {
 		
 		System.out.println(linearMin(A));
 		System.out.println("Minimum element: "+binaryMin(A,0,8));
+		System.out.println("Minimum element Loop: "+binaryMinLoop(A,0,8));
 
 	}
 
